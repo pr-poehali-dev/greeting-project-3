@@ -9,9 +9,7 @@ const Index = () => {
   
   // Инициализация аудио
   useEffect(() => {
-    // Замечание: мы используем обычный звуковой файл, который должен быть в публичной директории
-    // Звуковой файл должен быть оригинальным, чтобы избежать проблем с авторскими правами
-    const audioElement = new Audio('/placeholder.svg'); // Реальный путь к файлу должен быть заменен
+    const audioElement = new Audio('/brawl-stars-music.mp3'); // Реальный путь к файлу должен быть заменен
     audioElement.loop = true;
     audioElement.volume = 0.5;
     setAudio(audioElement);
@@ -26,7 +24,8 @@ const Index = () => {
   
   // Обработка завершения загрузки
   const handleLoadingComplete = () => {
-    if (audio && isAudioEnabled) {
+    if (audio && !isAudioEnabled) {
+      setIsAudioEnabled(true);
       audio.play().catch(error => {
         console.error("Автоматическое воспроизведение аудио заблокировано браузером:", error);
       });
